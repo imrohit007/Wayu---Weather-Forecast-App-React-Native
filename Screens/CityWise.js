@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import Weather from '../Components/Weather';
 import Search from '../Components/Search';
 
-const API_KEY = "5a51fbbed5148273bcb9a70c35d8d487";
+const API_KEY = "Enter Api key";
 
 
 function CityWise() {

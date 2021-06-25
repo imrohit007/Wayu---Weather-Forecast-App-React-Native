@@ -4,13 +4,13 @@ import * as Location from 'expo-location';
 import Header from '../Components/Header';
 
 
-const openWeatherKey = `5a51fbbed5148273bcb9a70c35d8d487`;
+const openWeatherKey = `Enter Key`;
 let url = `https://api.openweathermap.org/data/2.5/onecall?&units=metric&exclude=minutely&appid=${openWeatherKey}`;
 
 
 
 function Current() {
-    const [forecast, setForecast] = useState(null);
+  const [forecast, setForecast] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
 
   const loadForecast = async () => {
@@ -37,18 +37,18 @@ function Current() {
 
   useEffect(() => {
     loadForecast();
-}, [])
+  }, [])
 
   if (!forecast) {
     return <SafeAreaView style={styles.loading}>
       <ActivityIndicator size="large" />
       </SafeAreaView>;
   }
+  
 
   const current = forecast.current.weather[0];
 
   
-  // TODO: In an upcoming blog post, I'll be extracting components out of this class as you would in a real application.
   return (
     <SafeAreaView style={styles.container}>
       <Header />
@@ -70,20 +70,26 @@ function Current() {
           />
           <Text style={styles.currentTemp}>{Math.round(forecast.current.temp)}°C</Text>
         </View>
-        
         <Text style={styles.currentDescription}>{current.description}</Text>
         <View style={styles.extraInfo}>
-        <View style={styles.info}>
-                        <Text style={{ fontSize: 20, color: 'white' }}>Feels Like</Text>
-                        <Text style={{ fontSize: 20, color: 'white' }}>{forecast.current.feels_like}°C</Text>
-                    </View>
-
-                    <View style={styles.info}>
-                        <Text style={{ fontSize: 20, color: 'white' }}>Humidity</Text>
-                        <Text style={{ fontSize: 20, color: 'white' }}>{forecast.current.humidity}% </Text>
-                    </View>
+          <View style={styles.info}>
+            <Image 
+              source={require('../assets/temp.png')}
+              style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+            />  
+            <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>{forecast.current.feels_like}°C</Text>
+            <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>Feels Like</Text>
+          </View>
+          <View style={styles.info}>
+            <Image 
+              source={require('../assets/humidity.png')}
+              style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+            />
+            <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>{forecast.current.humidity}% </Text>
+            <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>Humidity</Text>
+          </View>
         </View>
-        
+          
         <View>
           <Text style={styles.subtitle}>Hourly Forecast</Text>
           <FlatList horizontal
@@ -122,7 +128,7 @@ const styles = StyleSheet.create({
     subtitle: {
       fontSize: 24,
       marginVertical: 12,
-      marginLeft: 4,
+      marginLeft:7,
       color: '#e96e50',
     },
     container: {
@@ -157,17 +163,6 @@ const styles = StyleSheet.create({
       padding: 6,
       alignItems: 'center',
     },
-    day: {
-      flexDirection: 'row',
-    },
-    dayDetails: {
-      justifyContent: 'center',
-    },
-    dayTemp: {
-      marginLeft: 12,
-      alignSelf: 'center',
-      fontSize: 20
-    },
     largeIcon: {
       width: 300,
       height: 250,
@@ -181,14 +176,14 @@ const styles = StyleSheet.create({
       marginTop: 20,
       justifyContent: 'space-between',
       padding: 10
-  },
-  info: {
-    width: Dimensions.get('screen').width/2.5,
-    backgroundColor: 'rgba(0,0,0, 0.5)',
-    padding: 10,
-    borderRadius: 15,
-    justifyContent: 'center'
-  }
+    },
+    info: {
+      width: Dimensions.get('screen').width/2.5,
+      backgroundColor: 'rgba(0,0,0, 0.5)',
+      padding: 10,
+      borderRadius: 15,
+      justifyContent: 'center'
+    },
   });
 
 export default Current

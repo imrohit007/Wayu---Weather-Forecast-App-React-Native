@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, ImageBackground, Dimensions, StatusBar, Image, ScrollView, SafeAreaView, MaskedViewComponent } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions, StatusBar, ScrollView, SafeAreaView} from 'react-native';
 import Search from './Search';
-import { haze, rainy, snow, sunny } from '../assets/backgroundImages/index';
 import Header from './Header';
 
 export default function Weather({ weatherData, fetchWeatherData }) {
@@ -10,7 +9,7 @@ export default function Weather({ weatherData, fetchWeatherData }) {
             visibility,
             weather: [{description, icon}],
             name,
-            main: { temp, humidity, feels_like, pressure },
+            main: { temp, humidity, feels_like },
             wind: { speed },
             sys: { sunrise, sunset },
     } = weatherData;
@@ -41,39 +40,63 @@ export default function Weather({ weatherData, fetchWeatherData }) {
                 <View style={styles.extraInfo}>
 
                     <View style={styles.info}>
-                        <Text style={{ fontSize: 20, color: 'white' }}>Feels Like</Text>
-                        <Text style={{ fontSize: 20, color: 'white' }}>{feels_like} °C</Text>
+                    <Image 
+                        source={require('../assets/temp.png')}
+                        style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+                        />
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>{feels_like} °C</Text>
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>Feels Like</Text>
                     </View>
 
                     <View style={styles.info}>
-                        <Text style={{ fontSize: 20, color: 'white' }}>Humidity</Text>
-                        <Text style={{ fontSize: 20, color: 'white' }}>{humidity}%</Text>
-                    </View>
-                
-                </View>
-                <View style={styles.extraInfo}>
-
-                    <View style={styles.info}>
-                        <Text style={{ fontSize: 20, color: 'white' }}>Visibility</Text>
-                        <Text style={{ fontSize: 22, color: 'white' }}>{visibility}</Text>
-                    </View>
-
-                    <View style={styles.info}>
-                        <Text style={{ fontSize: 20, color: 'white' }}>Wind Speed</Text>
-                        <Text style={{ fontSize: 20, color: 'white' }}>{speed} m/s</Text>
+                    <Image 
+                        source={require('../assets/humidity.png')}
+                        style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+                        />
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>{humidity}%</Text>
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>Humidity</Text>
                     </View>
                 
                 </View>
                 <View style={styles.extraInfo}>
 
                     <View style={styles.info}>
-                        <Text style={{ fontSize: 20, color: 'white' }}>Sunrise</Text>
-                        <Text style={{ fontSize: 20, color: 'white' }}>{new Date(sunrise*1000).toLocaleString()}</Text>
+                    <Image 
+                        source={require('../assets/visibility.png')}
+                        style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+                        />
+                        <Text style={{ fontSize: 22, color: 'white', textAlign:'center' }}>{visibility}</Text>
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>Visibility</Text>
                     </View>
 
                     <View style={styles.info}>
-                        <Text style={{ fontSize: 20, color: 'white' }}>Sunset</Text>
-                        <Text style={{ fontSize: 20, color: 'white' }}>{new Date(sunset*1000).toLocaleString()}</Text>
+                    <Image 
+                        source={require('../assets/windspeed.png')}
+                        style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+                        />
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>{speed} m/s</Text>
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>Wind Speed</Text>
+                    </View>
+                
+                </View>
+                <View style={styles.extraInfo}>
+
+                    <View style={styles.info}>
+                        <Image 
+                        source={require('../assets/sunrise.png')}
+                        style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+                        />
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>{new Date(sunrise*1000).toLocaleString()}</Text>
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>Sunrise</Text>
+                    </View>
+
+                    <View style={styles.info}>
+                    <Image 
+                        source={require('../assets/sunset.png')}
+                        style={{width:40, height:40, borderRadius:40/2, marginLeft:50}}
+                        />
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>{new Date(sunset*1000).toLocaleString()}</Text>
+                        <Text style={{ fontSize: 20, color: 'white', textAlign:'center' }}>Sunset</Text>
                     </View>
                 
                 </View>

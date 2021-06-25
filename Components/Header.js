@@ -1,5 +1,5 @@
 import React from 'react'
-import { Appbar, Text, Image } from 'react-native-paper';
+import { Appbar, Text} from 'react-native-paper';
 
 function Header() {
 
